@@ -35,20 +35,20 @@ const ResultModal: React.FC<{
         <>
           <div className="text-7xl mb-4 animate-bounce">🎉</div>
           <h2 className="text-3xl font-bold text-green-600 mb-2">太棒了！</h2>
-          <p className="text-gray-600 mb-4">你成功完成了关卡！</p>
+          <p className="text-themed-text-secondary mb-4">你成功完成了关卡！</p>
           <div className="flex justify-center gap-1 mb-6">
             {Array.from({ length: totalStars }).map((_, i) => (
               <span
                 key={i}
-                className={`text-4xl ${i < starsCollected ? 'text-yellow-400' : 'text-gray-300'} transition-all duration-500`}
+                className={`text-4xl ${i < starsCollected ? 'text-yellow-400' : 'text-themed-text-muted'} transition-all duration-500`}
                 style={{ animationDelay: `${i * 0.2}s` }}
               >
                 {i < starsCollected ? '⭐' : '☆'}
               </span>
             ))}
           </div>
-          <div className="bg-gray-50 rounded-xl p-4 mb-6">
-            <div className="text-sm text-gray-500">执行步数</div>
+          <div className="rounded-xl p-4 mb-6 bg-themed-surface-alt">
+            <div className="text-sm text-themed-text-secondary">执行步数</div>
             <div className="text-2xl font-bold text-primary-600">{steps}</div>
           </div>
           <div className="flex gap-3 justify-center">
@@ -69,9 +69,9 @@ const ResultModal: React.FC<{
         <>
           <div className="text-7xl mb-4">😢</div>
           <h2 className="text-3xl font-bold text-red-500 mb-2">失败了</h2>
-          <p className="text-gray-600 mb-4">{error || '再试一次吧！'}</p>
-          <div className="bg-gray-50 rounded-xl p-4 mb-6">
-            <div className="text-sm text-gray-500">已收集星星</div>
+          <p className="text-themed-text-secondary mb-4">{error || '再试一次吧！'}</p>
+          <div className="rounded-xl p-4 mb-6 bg-themed-surface-alt">
+            <div className="text-sm text-themed-text-secondary">已收集星星</div>
             <div className="text-2xl font-bold text-yellow-500">
               {starsCollected} / {totalStars}
             </div>
@@ -218,27 +218,27 @@ export const GameScreen: React.FC<GameScreenProps> = ({
                 ← 返回
               </button>
               <div>
-                <h1 className="text-xl font-bold text-gray-800">{level.name}</h1>
-                <p className="text-sm text-gray-500">{level.description}</p>
+                <h1 className="text-xl font-bold text-themed-text">{level.name}</h1>
+                <p className="text-sm text-themed-text-secondary">{level.description}</p>
               </div>
             </div>
 
             <div className="flex items-center gap-3 flex-wrap">
-              <div className="flex items-center gap-2 bg-yellow-50 px-4 py-2 rounded-xl">
+              <div className="flex items-center gap-2 bg-yellow-50 px-4 py-2 rounded-xl" style={{ backgroundColor: 'rgb(var(--theme-surface-alt))' }}>
                 <span className="text-xl">⭐</span>
                 <span className="font-bold text-yellow-700">
                   {level.stars.length - currentState.robot.stars.length} / {level.stars.length}
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 bg-gray-100 rounded-xl px-2 py-1">
-                <span className="text-xs text-gray-500 px-2">速度</span>
+              <div className="flex items-center gap-2 rounded-xl px-2 py-1" style={{ backgroundColor: 'rgb(var(--theme-surface-alt))' }}>
+                <span className="text-xs text-themed-text-secondary px-2">速度</span>
                 {[200, 500, 1000].map((s) => (
                   <button
                     key={s}
                     onClick={() => setSpeed(s)}
                     className={`px-3 py-1 rounded-lg text-sm font-medium transition-all
-                      ${speed === s ? 'bg-primary-500 text-white' : 'hover:bg-gray-200 text-gray-600'}`}
+                      ${speed === s ? 'bg-primary-500 text-white' : 'hover:bg-themed-surface-hover text-themed-text-secondary'}`}
                   >
                     {s === 200 ? '快' : s === 500 ? '中' : '慢'}
                   </button>
@@ -290,10 +290,10 @@ export const GameScreen: React.FC<GameScreenProps> = ({
           <div className="lg:col-span-5">
             <div className="game-card p-4 h-full flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
+                <h3 className="text-lg font-bold text-themed-text flex items-center gap-2">
                   <span>🗺️</span> 游戏地图
                 </h3>
-                <div className="text-sm text-gray-500">
+                <div className="text-sm text-themed-text-secondary">
                   {isRunning && executionSteps.length > 0 && (
                     <span>
                       步骤 {currentStepIndex + 1} / {executionSteps.length}

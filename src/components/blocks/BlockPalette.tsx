@@ -61,8 +61,8 @@ export const BlockPalette: React.FC<BlockPaletteProps> = ({ allowedBlocks, disab
   };
 
   return (
-    <div className="bg-white/90 rounded-2xl p-4 shadow-xl h-full overflow-y-auto">
-      <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
+    <div className="bg-themed-surface/90 rounded-2xl p-4 shadow-xl h-full overflow-y-auto">
+      <h3 className="text-lg font-bold text-themed-text mb-3 flex items-center gap-2">
         <span>🧩</span> 指令块
       </h3>
       <div className="space-y-4">
@@ -73,7 +73,7 @@ export const BlockPalette: React.FC<BlockPaletteProps> = ({ allowedBlocks, disab
           if (blocks.length === 0) return null;
           return (
             <div key={category}>
-              <p className="text-xs text-gray-500 mb-2 font-semibold uppercase tracking-wide">
+              <p className="text-xs text-themed-text-secondary mb-2 font-semibold uppercase tracking-wide">
                 {categoryNames[category]}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -89,8 +89,8 @@ export const BlockPalette: React.FC<BlockPaletteProps> = ({ allowedBlocks, disab
           );
         })}
       </div>
-      <div className="mt-4 pt-4 border-t border-gray-200">
-        <p className="text-xs text-gray-500 leading-relaxed">
+      <div className="mt-4 pt-4 border-t border-themed-border">
+        <p className="text-xs text-themed-text-secondary leading-relaxed">
           💡 拖拽指令块到右侧的"程序区域"，编排你的程序吧！
         </p>
       </div>

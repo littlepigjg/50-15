@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import type { Level, GameMode } from './engine/types';
 import { LEVELS } from './engine/levels';
 import { loadCustomLevels, deleteCustomLevel, importLevelFromJson, saveCustomLevel } from './engine/storage';
+import { ThemeProvider } from './engine/ThemeContext';
 import { LevelSelect } from './components/LevelSelect';
 import { GameScreen } from './components/GameScreen';
 import { LevelEditor } from './components/LevelEditor';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
 import { v4 as uuidv4 } from 'uuid';
 
 const ImportModal: React.FC<{
@@ -28,14 +30,14 @@ const ImportModal: React.FC<{
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-fadeIn">
       <div className="game-card p-6 max-w-lg w-full animate-pop">
-        <h2 className="text-xl font-bold text-gray-800 mb-4">📥 导入关卡</h2>
-        <p className="text-sm text-gray-500 mb-3">
+        <h2 className="text-xl font-bold text-themed-text mb-4">📥 导入关卡</h2>
+        <p className="text-sm text-themed-text-secondary mb-3">
           粘贴关卡 JSON 数据，或从 .json 文件读取：
         </p>
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="w-full h-48 p-3 border border-gray-300 rounded-lg font-mono text-xs focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+          className="w-full h-48 p-3 border border-themed-border rounded-lg font-mono text-xs focus:ring-2 focus:ring-primary-500 outline-none resize-none bg-themed-surface-alt text-themed-text"
           placeholder='{"id":"level-1","name":"第1关",...}'
         />
         <div className="flex items-center gap-2 mt-3">
@@ -74,7 +76,7 @@ const ImportModal: React.FC<{
   );
 };
 
-const App: React.FC = () => {
+const AppContent: React.FC = () => {
   const [mode, setMode] = useState<GameMode>('menu');
   const [currentLevel, setCurrentLevel] = useState<Level | null>(null);
   const [customLevels, setCustomLevels] = useState<Level[]>([]);
@@ -129,7 +131,11 @@ const App: React.FC = () => {
   const isCustom = currentLevel ? customLevels.some((l) => l.id === currentLevel.id) : false;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
+      <div className="fixed top-4 right-4 z-30">
+        <ThemeSwitcher />
+      </div>
+
       {mode === 'menu' && (
         <LevelSelect
           onSelectLevel={handleSelectLevel}
@@ -174,6 +180,14 @@ const App: React.FC = () => {
         />
       )}
     </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   );
 };
 

@@ -231,7 +231,7 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
               <button onClick={onBack} className="btn-secondary">
                 ← 返回
               </button>
-              <h1 className="text-2xl font-bold text-gray-800">🎨 关卡编辑器</h1>
+              <h1 className="text-2xl font-bold text-themed-text">🎨 关卡编辑器</h1>
             </div>
             <div className="flex gap-3 flex-wrap">
               <button
@@ -268,41 +268,41 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             <div className="lg:col-span-3 space-y-4">
-              <div className="bg-gray-50 rounded-xl p-4">
-                <h3 className="font-bold text-gray-700 mb-3">📋 基本信息</h3>
+              <div className="bg-themed-surface-alt rounded-xl p-4">
+                <h3 className="font-bold text-themed-text mb-3">📋 基本信息</h3>
                 <div className="space-y-3">
                   <div>
-                    <label className="text-sm text-gray-600 block mb-1">关卡名称</label>
+                    <label className="text-sm text-themed-text-secondary block mb-1">关卡名称</label>
                     <input
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+                      className="w-full px-3 py-2 border border-themed-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
                       placeholder="输入关卡名称"
                     />
                   </div>
                   <div>
-                    <label className="text-sm text-gray-600 block mb-1">描述</label>
+                    <label className="text-sm text-themed-text-secondary block mb-1">描述</label>
                     <textarea
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none resize-none"
+                      className="w-full px-3 py-2 border border-themed-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none resize-none"
                       rows={2}
                       placeholder="描述关卡目标"
                     />
                   </div>
                   <div>
-                    <label className="text-sm text-gray-600 block mb-1">提示（可选）</label>
+                    <label className="text-sm text-themed-text-secondary block mb-1">提示（可选）</label>
                     <textarea
                       value={hint}
                       onChange={(e) => setHint(e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none resize-none"
+                      className="w-full px-3 py-2 border border-themed-border rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none resize-none"
                       rows={2}
                       placeholder="给玩家的提示"
                     />
                   </div>
                   <div>
-                    <label className="text-sm text-gray-600 block mb-1">
+                    <label className="text-sm text-themed-text-secondary block mb-1">
                       难度：{difficulty}
                     </label>
                     <input
@@ -313,7 +313,7 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                       onChange={(e) => setDifficulty(parseInt(e.target.value))}
                       className="w-full"
                     />
-                    <div className="flex justify-between text-xs text-gray-400 mt-1">
+                    <div className="flex justify-between text-xs text-themed-text-muted mt-1">
                       <span>简单</span>
                       <span>困难</span>
                     </div>
@@ -321,11 +321,11 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-xl p-4">
-                <h3 className="font-bold text-gray-700 mb-3">📐 地图设置</h3>
+              <div className="bg-themed-surface-alt rounded-xl p-4">
+                <h3 className="font-bold text-themed-text mb-3">📐 地图设置</h3>
                 <div className="grid grid-cols-2 gap-3 mb-3">
                   <div>
-                    <label className="text-sm text-gray-600 block mb-1">宽度</label>
+                    <label className="text-sm text-themed-text-secondary block mb-1">宽度</label>
                     <input
                       type="number"
                       min={3}
@@ -337,11 +337,11 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                           height
                         )
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
+                      className="w-full px-3 py-2 border border-themed-border rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                     />
                   </div>
                   <div>
-                    <label className="text-sm text-gray-600 block mb-1">高度</label>
+                    <label className="text-sm text-themed-text-secondary block mb-1">高度</label>
                     <input
                       type="number"
                       min={3}
@@ -353,12 +353,12 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                           Math.max(3, Math.min(20, parseInt(e.target.value) || 3))
                         )
                       }
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
+                      className="w-full px-3 py-2 border border-themed-border rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="text-sm text-gray-600 block mb-2">起始方向</label>
+                  <label className="text-sm text-themed-text-secondary block mb-2">起始方向</label>
                   <div className="grid grid-cols-4 gap-1">
                     {DIRECTIONS.map(({ dir, label: _label, icon }) => (
                       <button
@@ -367,7 +367,7 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                         className={`p-2 rounded-lg text-lg transition-all
                           ${startDirection === dir
                             ? 'bg-primary-500 text-white shadow-md'
-                            : 'bg-white border border-gray-200 hover:border-primary-300'
+                            : 'bg-themed-surface border border-themed-border hover:border-primary-300'
                           }`}
                       >
                         {icon}
@@ -377,8 +377,8 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                 </div>
               </div>
 
-              <div className="bg-gray-50 rounded-xl p-4">
-                <h3 className="font-bold text-gray-700 mb-3">🧩 允许的指令块</h3>
+              <div className="bg-themed-surface-alt rounded-xl p-4">
+                <h3 className="font-bold text-themed-text mb-3">🧩 允许的指令块</h3>
                 <div className="space-y-2 max-h-60 overflow-y-auto">
                   {ALL_BLOCK_TYPES.map((type) => {
                     const config = BLOCK_CONFIGS[type];
@@ -387,7 +387,7 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                       <label
                         key={type}
                         className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer transition-all
-                          ${checked ? `${config.color} text-white shadow-sm` : 'bg-white hover:bg-gray-100'}
+                          ${checked ? `${config.color} text-white shadow-sm` : 'bg-themed-surface hover:bg-themed-surface-hover'}
                         `}
                       >
                         <input
@@ -417,7 +417,7 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                   </button>
                   <button
                     onClick={() => setAllowedBlocks([])}
-                    className="flex-1 text-xs py-1.5 bg-gray-200 text-gray-600 rounded-lg hover:bg-gray-300 transition-colors"
+                    className="flex-1 text-xs py-1.5 bg-themed-surface-tertiary text-themed-text-secondary rounded-lg hover:bg-themed-surface-hover transition-colors"
                   >
                     清空
                   </button>
@@ -426,8 +426,8 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
             </div>
 
             <div className="lg:col-span-6">
-              <div className="bg-gray-50 rounded-xl p-4">
-                <h3 className="font-bold text-gray-700 mb-3">🗺️ 地图编辑</h3>
+              <div className="bg-themed-surface-alt rounded-xl p-4">
+                <h3 className="font-bold text-themed-text mb-3">🗺️ 地图编辑</h3>
 
                 <EditorToolbar currentTool={tool} onToolChange={setTool} />
 
@@ -445,9 +445,9 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                   />
                 </div>
 
-                <div className="mt-4 flex flex-wrap gap-4 justify-center text-sm text-gray-600 bg-white rounded-lg py-3">
+                <div className="mt-4 flex flex-wrap gap-4 justify-center text-sm text-themed-text-secondary bg-themed-surface rounded-lg py-3">
                   <span className="flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded bg-blue-100 border border-dashed border-blue-400" />
+                    <span className="w-3 h-3 rounded bg-primary-100 border border-dashed border-primary-400" />
                     起点 ({start.x}, {start.y})
                   </span>
                   <span className="flex items-center gap-1.5">
@@ -463,9 +463,9 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
             </div>
 
             <div className="lg:col-span-3">
-              <div className="bg-gray-50 rounded-xl p-4 h-full flex flex-col">
-                <h3 className="font-bold text-gray-700 mb-3">📖 使用说明</h3>
-                <div className="space-y-2 text-sm text-gray-600 flex-1">
+              <div className="bg-themed-surface-alt rounded-xl p-4 h-full flex flex-col">
+                <h3 className="font-bold text-themed-text mb-3">📖 使用说明</h3>
+                <div className="space-y-2 text-sm text-themed-text-secondary flex-1">
                   <p>
                     <strong>1. 选择工具：</strong>点击上方工具栏
                   </p>
@@ -489,7 +489,7 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
                   </p>
                 </div>
 
-                <div className="mt-6 p-3 bg-blue-50 rounded-lg text-sm text-blue-700 border border-blue-100">
+                <div className="mt-6 p-3 bg-primary-50 rounded-lg text-sm text-primary-700 border border-primary-100">
                   <strong>⚠️ 注意：</strong>
                   <ul className="list-disc list-inside mt-2 space-y-1">
                     <li>墙壁和陷阱不能放在起点/终点上</li>
@@ -506,14 +506,14 @@ export const LevelEditor: React.FC<LevelEditorProps> = ({
       {showImport && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="game-card p-6 max-w-lg w-full animate-pop">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">📥 导入关卡</h2>
-            <p className="text-sm text-gray-500 mb-3">
+            <h2 className="text-xl font-bold text-themed-text mb-4">📥 导入关卡</h2>
+            <p className="text-sm text-themed-text-secondary mb-3">
               粘贴关卡 JSON 数据，或从 .json 文件读取：
             </p>
             <textarea
               value={importText}
               onChange={(e) => setImportText(e.target.value)}
-              className="w-full h-48 p-3 border border-gray-300 rounded-lg font-mono text-xs focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+              className="w-full h-48 p-3 border border-themed-border rounded-lg font-mono text-xs focus:ring-2 focus:ring-primary-500 outline-none resize-none"
               placeholder='{"id":"level-1","name":"第1关",...}'
             />
             <div className="flex items-center gap-2 mt-3">

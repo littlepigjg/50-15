@@ -55,12 +55,12 @@ const DropZone: React.FC<{
       ref={setNodeRef}
       className={`
         min-h-[200px] rounded-xl border-2 border-dashed p-3 transition-all duration-200
-        ${isOver ? 'drag-over border-4' : 'border-gray-300 bg-gray-50/50'}
+        ${isOver ? 'drag-over border-4' : 'border-themed-border bg-themed-surface-alt/50'}
         ${className}
       `}
     >
       {label && !children && (
-        <div className="flex items-center justify-center h-48 text-gray-400 text-sm">
+        <div className="flex items-center justify-center h-48 text-themed-text-muted text-sm">
           <div className="text-center">
             <div className="text-4xl mb-2">📝</div>
             <p>{label}</p>
@@ -226,9 +226,9 @@ export const ProgramArea: React.FC<ProgramAreaProps> = ({
   return (
     <div className="h-full flex flex-col">
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-lg font-bold text-gray-800">{title}</h3>
+        <h3 className="text-lg font-bold text-themed-text">{title}</h3>
         {maxBlocks && (
-          <span className={`text-sm font-medium ${countBlocks(blocks) >= maxBlocks ? 'text-red-500' : 'text-gray-500'}`}>
+          <span className={`text-sm font-medium ${countBlocks(blocks) >= maxBlocks ? 'text-red-500' : 'text-themed-text-secondary'}`}>
             {countBlocks(blocks)} / {maxBlocks} 块
           </span>
         )}

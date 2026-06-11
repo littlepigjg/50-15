@@ -15,14 +15,23 @@ interface EditorGridProps {
 }
 
 const WallCell: React.FC = () => (
-  <div className="w-full h-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center">
-    <div className="w-3/4 h-3/4 bg-gradient-to-br from-gray-500 to-gray-700 rounded-sm" />
+  <div className="w-full h-full flex items-center justify-center"
+    style={{ background: `linear-gradient(to bottom right, var(--wall-from), var(--wall-to))` }}
+  >
+    <div className="w-3/4 h-3/4 rounded-sm"
+      style={{ background: `linear-gradient(to bottom right, var(--wall-from), var(--wall-to))`, opacity: 0.8 }}
+    />
   </div>
 );
 
 const PitCell: React.FC = () => (
   <div className="w-full h-full flex items-center justify-center">
-    <div className="w-4/5 h-4/5 bg-gradient-to-br from-gray-900 to-black rounded-full border-2 border-gray-800 flex items-center justify-center text-red-400">
+    <div className="w-4/5 h-4/5 rounded-full flex items-center justify-center text-red-400"
+      style={{
+        background: `linear-gradient(to bottom right, var(--pit-from), var(--pit-to))`,
+        border: '2px solid var(--pit-border)',
+      }}
+    >
       ⚠
     </div>
   </div>
@@ -30,15 +39,19 @@ const PitCell: React.FC = () => (
 
 const StartMarker: React.FC = () => (
   <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-    <div className="w-4/5 h-4/5 rounded-lg border-2 border-dashed border-blue-500 bg-blue-100/80 flex items-center justify-center">
-      <span className="text-blue-600 text-xs font-bold">起</span>
+    <div className="w-4/5 h-4/5 rounded-lg border-2 border-dashed flex items-center justify-center"
+      style={{ borderColor: 'var(--start-border)', backgroundColor: 'var(--start-bg)' }}
+    >
+      <span className="text-xs font-bold" style={{ color: 'var(--start-border)' }}>起</span>
     </div>
   </div>
 );
 
 const GoalMarker: React.FC = () => (
   <div className="absolute inset-0 flex items-center justify-center pointer-events-none animate-pulse z-10">
-    <div className="w-4/5 h-4/5 rounded-lg bg-gradient-to-br from-green-300 to-emerald-500 flex items-center justify-center shadow-md">
+    <div className="w-4/5 h-4/5 rounded-lg flex items-center justify-center shadow-md"
+      style={{ background: `linear-gradient(to bottom right, var(--goal-from), var(--goal-to))` }}
+    >
       <span className="text-xl">🏁</span>
     </div>
   </div>
@@ -49,14 +62,14 @@ const StarMarker: React.FC = () => (
     <svg width="60%" height="60%" viewBox="0 0 24 24" className="drop-shadow-md">
       <defs>
         <linearGradient id="editorStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#fde047" />
-          <stop offset="100%" stopColor="#eab308" />
+          <stop offset="0%" stopColor="var(--star-from)" />
+          <stop offset="100%" stopColor="var(--star-to)" />
         </linearGradient>
       </defs>
       <path
         d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
         fill="url(#editorStarGrad)"
-        stroke="#ca8a04"
+        stroke="var(--star-stroke)"
         strokeWidth="0.5"
       />
     </svg>
@@ -77,7 +90,8 @@ const DirectionIndicator: React.FC<{ direction: Direction }> = ({ direction }) =
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-0.5">
         <div
-          className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-transparent border-b-blue-500 drop-shadow-sm"
+          className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-transparent drop-shadow-sm"
+          style={{ borderBottomColor: 'var(--start-border)' }}
         />
       </div>
     </div>
@@ -106,12 +120,19 @@ export const EditorGrid: React.FC<EditorGridProps> = ({
   }, [stars]);
 
   return (
-    <div className="flex justify-center overflow-auto p-4 bg-white rounded-xl border border-gray-200 shadow-inner">
+    <div className="flex justify-center overflow-auto p-4 rounded-xl border shadow-inner"
+      style={{
+        backgroundColor: 'rgb(var(--theme-surface))',
+        borderColor: 'rgb(var(--theme-border))',
+      }}
+    >
       <div
-        className="relative border-2 border-gray-400 rounded-lg overflow-hidden bg-slate-100 shadow-lg"
+        className="relative border-2 rounded-lg overflow-hidden shadow-lg"
         style={{
           width: width * cellSize,
           height: height * cellSize,
+          backgroundColor: 'rgb(var(--grid-inner-bg))',
+          borderColor: 'rgb(var(--grid-border))',
         }}
       >
         {grid.map((row, y) =>
@@ -125,16 +146,16 @@ export const EditorGrid: React.FC<EditorGridProps> = ({
               <div
                 key={`editor-cell-${x}-${y}`}
                 onClick={() => onCellClick(x, y)}
-                className={`
-                  absolute border border-slate-300/60 cell-hover
-                  transition-colors duration-100
-                  ${(x + y) % 2 === 0 ? 'bg-slate-50' : 'bg-slate-100'}
-                `}
+                className="absolute cell-hover transition-colors duration-100"
                 style={{
                   left: x * cellSize,
                   top: y * cellSize,
                   width: cellSize,
                   height: cellSize,
+                  border: '0.5px solid rgb(var(--grid-border) / 0.6)',
+                  backgroundColor: (x + y) % 2 === 0
+                    ? 'rgb(var(--grid-cell-a))'
+                    : 'rgb(var(--grid-cell-b))',
                   cursor: tool === 'select' ? 'default' : 'pointer',
                 }}
               >

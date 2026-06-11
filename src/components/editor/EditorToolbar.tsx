@@ -83,7 +83,7 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
               px-3 py-2 rounded-lg flex items-center gap-1.5 text-sm font-medium transition-all
               ${currentTool === tool
                 ? 'ring-2 ring-offset-2 ring-primary-500 scale-105 shadow-md'
-                : 'hover:scale-105 bg-white border border-gray-200 hover:border-primary-300 hover:bg-primary-50'
+                : 'hover:scale-105 bg-themed-surface border border-themed-border hover:border-primary-300 hover:bg-primary-50'
               }
             `}
             title={label}
@@ -99,13 +99,13 @@ export const EditorToolbar: React.FC<EditorToolbarProps> = ({
       </div>
 
       {activeConfig && (
-        <div className="text-xs text-gray-500 bg-blue-50 border border-blue-100 rounded-lg px-3 py-2 flex items-start gap-2">
-          <span className="text-blue-500 font-bold">💡</span>
+        <div className="text-xs text-themed-text-secondary bg-primary-50 border border-primary-100 rounded-lg px-3 py-2 flex items-start gap-2">
+          <span className="text-primary-500 font-bold">💡</span>
           <span>
-            <strong className="text-blue-700">{activeConfig.label}：</strong>
+            <strong className="text-primary-700">{activeConfig.label}：</strong>
             {activeConfig.description}
             {activeConfig.tool === 'wall' || activeConfig.tool === 'pit' || activeConfig.tool === 'star' ? (
-              <span className="text-blue-600 ml-1">（再次点击同一格可移除）</span>
+              <span className="text-primary-600 ml-1">（再次点击同一格可移除）</span>
             ) : null}
           </span>
         </div>

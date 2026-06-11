@@ -14,8 +14,8 @@ const DifficultyBadge: React.FC<{ difficulty: number }> = ({ difficulty }) => {
   const colors = [
     'bg-green-100 text-green-700',
     'bg-green-100 text-green-700',
-    'bg-blue-100 text-blue-700',
-    'bg-blue-100 text-blue-700',
+    'bg-primary-100 text-primary-700',
+    'bg-primary-100 text-primary-700',
     'bg-purple-100 text-purple-700',
     'bg-purple-100 text-purple-700',
     'bg-orange-100 text-orange-700',
@@ -60,7 +60,7 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
               <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
                 CodeRobot
               </h1>
-              <p className="text-gray-500 mt-1">图形化编程解谜游戏</p>
+              <p className="text-themed-text-secondary mt-1">图形化编程解谜游戏</p>
             </div>
           </div>
 
@@ -69,21 +69,21 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
               <div className="text-3xl font-bold text-primary-600">
                 {totalCompleted}/{LEVELS.length}
               </div>
-              <div className="text-sm text-gray-500">关卡完成</div>
+              <div className="text-sm text-themed-text-secondary">关卡完成</div>
             </div>
-            <div className="w-px h-12 bg-gray-200" />
+            <div className="w-px h-12 bg-themed-border" />
             <div className="text-center">
               <div className="text-3xl font-bold text-yellow-500">
                 {LEVELS.reduce((acc, l) => acc + (progress[l.id]?.starsCollected || 0), 0)}
                 /
                 {LEVELS.reduce((acc, l) => acc + l.stars.length, 0)}
               </div>
-              <div className="text-sm text-gray-500">星星收集</div>
+              <div className="text-sm text-themed-text-secondary">星星收集</div>
             </div>
-            <div className="w-px h-12 bg-gray-200" />
+            <div className="w-px h-12 bg-themed-border" />
             <div className="text-center">
               <div className="text-3xl font-bold text-purple-500">{customLevels.length}</div>
-              <div className="text-sm text-gray-500">自定义关卡</div>
+              <div className="text-sm text-themed-text-secondary">自定义关卡</div>
             </div>
           </div>
 
@@ -99,26 +99,26 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
 
         <div className="game-card p-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-gray-800">选择关卡</h2>
+            <h2 className="text-2xl font-bold text-themed-text">选择关卡</h2>
             <div className="flex gap-2">
               <button
                 onClick={() => setFilter('all')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all
-                  ${filter === 'all' ? 'bg-primary-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                  ${filter === 'all' ? 'bg-primary-500 text-white' : 'bg-themed-surface-hover text-themed-text-secondary hover:bg-themed-surface-tertiary'}`}
               >
                 全部
               </button>
               <button
                 onClick={() => setFilter('main')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all
-                  ${filter === 'main' ? 'bg-primary-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                  ${filter === 'main' ? 'bg-primary-500 text-white' : 'bg-themed-surface-hover text-themed-text-secondary hover:bg-themed-surface-tertiary'}`}
               >
                 官方
               </button>
               <button
                 onClick={() => setFilter('custom')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all
-                  ${filter === 'custom' ? 'bg-primary-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                  ${filter === 'custom' ? 'bg-primary-500 text-white' : 'bg-themed-surface-hover text-themed-text-secondary hover:bg-themed-surface-tertiary'}`}
               >
                 自定义
               </button>
@@ -126,7 +126,7 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
           </div>
 
           {displayedLevels.length === 0 ? (
-            <div className="text-center py-12 text-gray-400">
+            <div className="text-center py-12 text-themed-text-muted">
               <div className="text-6xl mb-4">📭</div>
               <p>暂无{filter === 'custom' ? '自定义' : ''}关卡</p>
               {filter === 'custom' && (
@@ -149,8 +149,8 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
                     className={`
                       relative p-4 rounded-xl border-2 transition-all duration-200
                       ${unlocked
-                        ? 'bg-white hover:scale-105 hover:shadow-lg cursor-pointer border-gray-200 hover:border-primary-400'
-                        : 'bg-gray-100 cursor-not-allowed border-gray-200 opacity-60'
+                        ? 'bg-themed-surface hover:scale-105 hover:shadow-lg cursor-pointer border-themed-border hover:border-primary-400'
+                        : 'bg-themed-surface-alt cursor-not-allowed border-themed-border opacity-60'
                       }
                       ${completed ? 'border-green-400 bg-green-50/30' : ''}
                     `}
@@ -172,7 +172,7 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
                       <DifficultyBadge difficulty={level.difficulty} />
                     </div>
 
-                    <h3 className="text-sm font-bold text-gray-800 text-left truncate mb-1">
+                    <h3 className="text-sm font-bold text-themed-text text-left truncate mb-1">
                       {level.name}
                     </h3>
 
@@ -185,14 +185,14 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
                               className={`text-sm ${
                                 (levelProgress?.starsCollected || 0) > i
                                   ? 'text-yellow-400'
-                                  : 'text-gray-300'
+                                  : 'text-themed-text-muted'
                               }`}
                             >
                               ★
                             </span>
                           ))
                         ) : (
-                          <span className="text-xs text-gray-400">无星</span>
+                          <span className="text-xs text-themed-text-muted">无星</span>
                         )}
                       </div>
                       {completed && (
@@ -206,7 +206,7 @@ export const LevelSelect: React.FC<LevelSelectProps> = ({
           )}
         </div>
 
-        <div className="text-center mt-8 text-white/70 text-sm">
+        <div className="text-center mt-8 text-themed-text-inverse/70 text-sm">
           💡 提示：使用拖拽指令块的方式编程，控制机器人到达终点并收集所有星星
         </div>
       </div>
